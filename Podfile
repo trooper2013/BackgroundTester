@@ -7,7 +7,3 @@ pod 'SalesforceMobileSDK-iOS', '3.2.1'
 
 end
 
-target 'BackgroundTesterTests' do
-
-end
-

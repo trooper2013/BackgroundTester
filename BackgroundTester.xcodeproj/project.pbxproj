@@ -12,7 +12,6 @@
 		4F3258841B30C41500FACE94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3258821B30C41500FACE94 /* Main.storyboard */; };
 		4F3258861B30C41500FACE94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3258851B30C41500FACE94 /* Images.xcassets */; };
 		4F3258891B30C41500FACE94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F3258871B30C41500FACE94 /* LaunchScreen.xib */; };
-		4F3258951B30C41500FACE94 /* BackgroundTesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3258941B30C41500FACE94 /* BackgroundTesterTests.swift */; };
 		C0B312A3A3C8096CE07D3B60 /* libPods-BackgroundTester.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2296B8762F8D6B803DA7DCA /* libPods-BackgroundTester.a */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +33,7 @@
 		4F3258831B30C41500FACE94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F3258851B30C41500FACE94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4F3258881B30C41500FACE94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4F32588E1B30C41500FACE94 /* BackgroundTesterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BackgroundTesterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3258931B30C41500FACE94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F3258941B30C41500FACE94 /* BackgroundTesterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTesterTests.swift; sourceTree = "<group>"; };
 		4F6DB09C1B30CAC60080E70C /* BackgroundTester-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BackgroundTester-Bridging-Header.h"; sourceTree = "<group>"; };
 		6D661912C9E8288436119E08 /* Pods-BackgroundTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BackgroundTester.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BackgroundTester/Pods-BackgroundTester.debug.xcconfig"; sourceTree = "<group>"; };
 		A2296B8762F8D6B803DA7DCA /* libPods-BackgroundTester.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BackgroundTester.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				4F32587B1B30C41500FACE94 /* BackgroundTester */,
-				4F3258911B30C41500FACE94 /* BackgroundTesterTests */,
 				4F32587A1B30C41500FACE94 /* Products */,
 				3AAD0E92D723ECC05E058920 /* Pods */,
 				38AC8D271FC860C7CDC0BDBA /* Frameworks */,
@@ -94,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				4F3258791B30C41500FACE94 /* BackgroundTester.app */,
-				4F32588E1B30C41500FACE94 /* BackgroundTesterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,23 +116,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4F3258911B30C41500FACE94 /* BackgroundTesterTests */ = {
-			isa = PBXGroup;
-			children = (
-				4F3258941B30C41500FACE94 /* BackgroundTesterTests.swift */,
-				4F3258921B30C41500FACE94 /* Supporting Files */,
-			);
-			path = BackgroundTesterTests;
-			sourceTree = "<group>";
-		};
-		4F3258921B30C41500FACE94 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4F3258931B30C41500FACE94 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,24 +137,6 @@
 			productName = BackgroundTester;
 			productReference = 4F3258791B30C41500FACE94 /* BackgroundTester.app */;
 			productType = "com.apple.product-type.application";
-		};
-		4F32588D1B30C41500FACE94 /* BackgroundTesterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4F32589B1B30C41500FACE94 /* Build configuration list for PBXNativeTarget "BackgroundTesterTests" */;
-			buildPhases = (
-				4F32588A1B30C41500FACE94 /* Sources */,
-				4F32588B1B30C41500FACE94 /* Frameworks */,
-				4F32588C1B30C41500FACE94 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4F3258901B30C41500FACE94 /* PBXTargetDependency */,
-			);
-			name = BackgroundTesterTests;
-			productName = BackgroundTesterTests;
-			productReference = 4F32588E1B30C41500FACE94 /* BackgroundTesterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -210,7 +170,6 @@
 			projectRoot = "";
 			targets = (
 				4F3258781B30C41500FACE94 /* BackgroundTester */,
-				4F32588D1B30C41500FACE94 /* BackgroundTesterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -275,14 +234,6 @@
 			files = (
 				4F3258811B30C41500FACE94 /* ViewController.swift in Sources */,
 				4F32587F1B30C41500FACE94 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4F32588A1B30C41500FACE94 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4F3258951B30C41500FACE94 /* BackgroundTesterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,40 +376,6 @@
 			};
 			name = Release;
 		};
-		4F32589C1B30C41500FACE94 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BackgroundTesterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BackgroundTester.app/BackgroundTester";
-			};
-			name = Debug;
-		};
-		4F32589D1B30C41500FACE94 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = BackgroundTesterTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BackgroundTester.app/BackgroundTester";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -476,15 +393,6 @@
 			buildConfigurations = (
 				4F3258991B30C41500FACE94 /* Debug */,
 				4F32589A1B30C41500FACE94 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4F32589B1B30C41500FACE94 /* Build configuration list for PBXNativeTarget "BackgroundTesterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4F32589C1B30C41500FACE94 /* Debug */,
-				4F32589D1B30C41500FACE94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
