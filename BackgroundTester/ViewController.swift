@@ -31,23 +31,35 @@ class ViewController: UIViewController {
         
         // Reading counter from db
         self.counter = self.getCurrentCounterFromDb();
-        self.counterLabel.text = String(self.counter);
+    
+        // Update UI
+        self.updateUI();
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func onResetClick(sender: AnyObject) {
+        self.running = false;
+        self.store.clearSoup(SOUP_NAME);
+        self.counter = 0;
+        self.updateUI();
+    }
+    
     @IBAction func onStartStopClick(sender: AnyObject) {
+        self.running = !self.running;
         if (self.running) {
-            self.running = false;
-            self.startStopButton.setTitle("Start", forState: UIControlState.Normal);
+            self.startTask();
         }
-        else {
-            startTask();
-            self.running  = true;
-            self.startStopButton.setTitle("Stop", forState: UIControlState.Normal);
-        }
+        self.updateUI();
+    }
+    
+    func updateUI() {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.startStopButton.setTitle(self.running ? "Stop" : "Start", forState: UIControlState.Normal);
+            self.counterLabel.text = String(self.counter);
+        });
     }
 
     func startTask() {
@@ -59,36 +71,29 @@ class ViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             while (self.running) {
                 var currentCounter = self.getCurrentCounterFromDb();
+                if (currentCounter == -1) { break; }
 
-                if (currentCounter == -1) {
-                    self.running = false;
-                    break;
-                }
-                
                 var newCounter = self.insertNext(currentCounter);
-                
-                if (newCounter == -1) {
-                    self.running = false;
-                    break;
-                }
+                if (newCounter == -1) { break; }
+
                 self.counter = newCounter;
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.counterLabel.text = String(newCounter);
-                });
+                self.updateUI();
                 NSThread.sleepForTimeInterval(0.2);
             }
+            self.running = false;
+            self.updateUI();
         });
     }
     
     func getCurrentCounterFromDb() -> Int {
         var possibleError : NSError?;
-        var result = self.store.queryWithQuerySpec(SFQuerySpec.newSmartQuerySpec("SELECT MAX({\(SOUP_NAME):id}) FROM {\(SOUP_NAME)}", withPageSize: 1), pageIndex:0, error:&possibleError);
+        var result = self.store.queryWithQuerySpec(SFQuerySpec.newSmartQuerySpec("SELECT count(*) FROM {\(SOUP_NAME)}", withPageSize: 1), pageIndex:0, error:&possibleError);
         if let error  = possibleError {
             NSLog("Failed to get count from db (%@)", error);
             return -1;
         }
             
-        if (result == nil || result.count != 1 || result[0].count != 1) {
+        if (result == nil || result.count != 1 || result[0].count != 1 || !result[0][0].isKindOfClass(NSNumber)) {
             NSLog("Failed to get count from db (query returned: %@)", result);
             return -1;
         }
@@ -97,6 +102,7 @@ class ViewController: UIViewController {
     }
     
     func insertNext(currentCounter : Int) -> Int {
+        
         var possibleError : NSError?;
         var newCounter = currentCounter + 1;
         var result = self.store.upsertEntries([["id": newCounter]], toSoup: self.SOUP_NAME, withExternalIdPath:"id", error:&possibleError);
