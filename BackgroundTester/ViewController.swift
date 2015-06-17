@@ -82,29 +82,37 @@ class ViewController: UIViewController {
     
     func getCurrentCounterFromDb() -> Int {
         var possibleError : NSError?;
-        var currentCounter = self.store.countWithQuerySpec(SFQuerySpec.newAllQuerySpec(SOUP_NAME, withPath: "id", withOrder: SFSoupQuerySortOrder.Ascending, withPageSize: 1), error:&possibleError);
+        var result = self.store.queryWithQuerySpec(SFQuerySpec.newSmartQuerySpec("SELECT MAX({\(SOUP_NAME):id}) FROM {\(SOUP_NAME)}", withPageSize: 1), pageIndex:0, error:&possibleError);
         if let error  = possibleError {
             NSLog("Failed to get count from db (%@)", error);
             return -1;
         }
-        else {
-            return Int(currentCounter);
+            
+        if (result == nil || result.count != 1 || result[0].count != 1) {
+            NSLog("Failed to get count from db (query returned: %@)", result);
+            return -1;
         }
+            
+        return (result[0][0] as! NSNumber).integerValue;
     }
     
     func insertNext(currentCounter : Int) -> Int {
         var possibleError : NSError?;
         var newCounter = currentCounter + 1;
-        self.store.upsertEntries([["id": newCounter]], toSoup: self.SOUP_NAME, withExternalIdPath:"id", error:&possibleError);
+        var result = self.store.upsertEntries([["id": newCounter]], toSoup: self.SOUP_NAME, withExternalIdPath:"id", error:&possibleError);
         
         if let error = possibleError {
             NSLog("Failed to insert %d (%@)", newCounter, error);
             return -1;
         }
-        else {
-            NSLog("Succeeded inserting %d", newCounter);
-            return newCounter;
+
+        if (result == nil || result.count != 1) {
+            NSLog("Failed to insert %d (insert returned: %@)", newCounter, result);
+            return -1;
         }
+        
+        NSLog("Succeeded inserting %d", newCounter);
+        return newCounter;
     }
     
 }
