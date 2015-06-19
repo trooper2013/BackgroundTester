@@ -3,14 +3,14 @@
 
 target 'BackgroundTester' do
 
-pod 'SalesforceMobileSDK-iOS', '3.2.1' # Mobile SDK 3.2.1 , sqlcipher 3.1 (pod)
+# Mobile SDK 3.2.1 , sqlcipher 3.1 (pod)
+pod 'SalesforceMobileSDK-iOS', '3.2.1'
 
+# For Mobile SDK 3.2.1 with sqlcipher v2.0.5 (static library)
+# pod 'SalesforceMobileSDK-iOS', :git => 'https://github.com/wmathurin/SalesforceMobileSDK-iOS.git', :branch => 'oldsqlcipher', :submodules => 'true'
 
-# for Mobile SDK 3.2.1 with sqlcipher v2.0.5 (static library) point to clone of https://github.com/wmathurin/SalesforceMobileSDK#oldsqlcipher
-# for Mobile SDK 3.3   (latest)                               point to clone of https://github.com/wmathurin/SalesforceMobileSDK#unstable
-
-# pod 'SalesforceMobileSDK-iOS', :path => 'path to local clone of repo' 
-
+# for Mobile SDK 3.3 with file system protection change
+# pod 'SalesforceMobileSDK-iOS', :git => 'https://github.com/wmathurin/SalesforceMobileSDK-iOS.git', :branch => 'filesystemprotection', :submodules => 'true'
 
 end
 
